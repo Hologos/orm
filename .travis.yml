@@ -1,18 +1,19 @@
 language: php
 
 php:
-  - 7.1
-  - 7.2
-  - 7.3
+    - 7.1
+    - 7.2
+    - 7.3
+    - 7.4snapshot
 
 services:
-  - postgresql
-  - mysql
+    - postgresql
+    - mysql
 
 env:
-  matrix:
-    - dependencies=lowest
-    - dependencies=highest
+    matrix:
+        - dependencies=lowest
+        - dependencies=highest
 
 matrix:
     fast_finish: true
@@ -46,10 +47,10 @@ script:
 
 after_script:
     - if [ "$TRAVIS_PHP_VERSION" == "7.2" ]; then
-      wget https://github.com/satooshi/php-coveralls/releases/download/v2.0.0/php-coveralls.phar
-      && php php-coveralls.phar --verbose --config tests/.coveralls.yml
-      || true;
-      fi
+        wget https://github.com/satooshi/php-coveralls/releases/download/v2.0.0/php-coveralls.phar
+        && php php-coveralls.phar --verbose --config tests/.coveralls.yml
+        || true;
+        fi
 
 after_failure:
     # Print *.actual content & log content
